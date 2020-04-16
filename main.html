@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>User login/logout</title>
+	</head>
+	<body>
+		{% if user %}
+		{{ welcome }} {{ myuser.name }} welcome to the application<br/>
+		Below you will find your details as currently entered into the system<br/>
+		<br/>
+    Email: {{myuser.email_address}}<br/>
+		Name: {{ myuser.name }}<br/>
+		Age: {{ myuser.age }}<br/>
+		id : {{ myuser.key.id()}}
+		<br/>
+		<br/>
+		{%if keys%}
+		<table>
+			<tr><th>name</th><th>Produce By</th><th>User in</th></tr>
+			{%for tkb in keys %}
+			<tr><td>{{tkb.name}}</td>
+				<td>{{tkb.ProdBy}}</td>
+				<td>
+				{%for user in tkb.Usersin %}
+				{{user.get().name}}<br/>
+				{%endfor%}
+				</td>
+			</tr>
+			{%endfor%}
+		</table>
+		{%endif%}
+		<br/>
+		<br/>
+		To create a new Taskboard click <a href="/ctb">here</a>
+		<br/>
+		<br/>
+		tk
+		<br/>
+	{{tk}}
+
+
+		{% else %}
+		<p>Hello guest welcome to the application</p>
+		{% endif %}
+		<p>you can {{ url_string }} <a href='{{ url }}'><input type="button" Name="login" value="here"></a></p>
+
+	</body>
+</html>

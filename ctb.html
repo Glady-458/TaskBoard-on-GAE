@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body bgcolor=red>
+    <form action="/ctb" method="POST">
+      name : <input type="text"  name="tk_name" required/><br/>
+      producted by : <input type="text" value="{{myuser.name}}" name="tk_pro"/><br/>
+      Invite users :
+      {%for u in usr%}
+      {%if u.key.id() != myuser.key.id()%}
+      <input type="checkbox" name="ck" value="{{u.key.id()}}")/>{{u.name}}
+      {%endif%}
+      {%endfor%}
+      <br/>
+      <input type="submit" name="button" value="Add">
+
+
+      {%for u in q%}
+
+      tb : <input type="checkbox" name="ck" value="{{u.id}}"/>{{u.key.id()}}<br/>
+
+      {%endfor%}
+    </form>
+    <form action="/ctb" method="POST">
+    <input type="submit" name="button" value="Cancel"><br/>
+    </form>
+  </body>
+</html>
