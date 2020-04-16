@@ -18,7 +18,7 @@
 		<table>
 			<tr><th>name</th><th>Produce By</th><th>User in</th></tr>
 			{%for tkb in keys %}
-			<tr><td>{{tkb.name}}</td>
+			<tr><td><a href='/tkbddetail?key={{tkb.key.id()}}'>{{tkb.name}}</a></td>
 				<td>{{tkb.ProdBy}}</td>
 				<td>
 				{%for user in tkb.Usersin %}
@@ -26,6 +26,7 @@
 				{%endfor%}
 				</td>
 			</tr>
+
 			{%endfor%}
 		</table>
 		{%endif%}

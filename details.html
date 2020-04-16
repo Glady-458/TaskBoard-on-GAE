@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <fieldset>
+    <center><h1>Information</h1></center>
+    <form class="" action="/tkbddetail" method="post">
+      <table>
+        <tr><td>owner:</td><td><label >{{tkbd.ProdBy}}</label></td></tr>
+        <tr><td>name</td><td><input type="text" name="tkbd_name" value="{{tkbd.name}}"></td></tr>
+        <tr><td>members</td><td>
+        {%for i in tkbd.Usersin%}
+        {{i.get().name}}<br/>
+        {%endfor%}
+        </td></tr>
+      </table>
+
+    </form><br/><br/>
+    {{tkbd}}
+  </fieldset>
+  </body>
+</html>

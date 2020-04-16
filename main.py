@@ -7,6 +7,7 @@ import os
 from datastore import *
 from ctb import *
 from edit import Edit
+from tkbddetails import *
 
 JINJA_ENVIRONMENT = jinja2.Environment(
 	loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -67,4 +68,5 @@ app = webapp2.WSGIApplication([
 ('/', MainPage),
 ('/edit', Edit),
 ('/ctb', CTB),
+('/tkbddetail', Detail)
 ], debug=True)
