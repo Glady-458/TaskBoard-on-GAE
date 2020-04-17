@@ -8,6 +8,7 @@ from datastore import *
 from ctb import *
 from edit import Edit
 from tkbddetails import *
+from addtk import *
 
 JINJA_ENVIRONMENT = jinja2.Environment(
 	loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -33,6 +34,7 @@ class MainPage(webapp2.RequestHandler):
 				myuser = MyUser(id=user.user_id())
 				myuser.email_address = user.email()
 				myuser.put()
+			if myuser.name==None:
 				self.redirect('/edit')
 			for i in myuser.tb:
 				keys.append(i.get())
@@ -58,8 +60,7 @@ class MainPage(webapp2.RequestHandler):
 			'user' : user,
 			'welcome' : welcome,
 			'myuser' : myuser,
-			'keys' : keys,
-			#'tk' : u,
+			'keys' : keys
 		}
 		template = JINJA_ENVIRONMENT.get_template('main.html')
 		self.response.write(template.render(template_values))
@@ -68,5 +69,6 @@ app = webapp2.WSGIApplication([
 ('/', MainPage),
 ('/edit', Edit),
 ('/ctb', CTB),
-('/tkbddetail', Detail)
+('/tkbddetail', Detail),
+('/addtask', ATask)
 ], debug=True)

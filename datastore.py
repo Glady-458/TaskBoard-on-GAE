@@ -7,7 +7,6 @@ class Task(ndb.Model):
 	appoint_to = ndb.KeyProperty(kind="MyUser",repeated=False)
 	start = ndb.DateTimeProperty()
 	end = ndb.DateTimeProperty()
-	tkbrd = ndb.KeyProperty(kind="TaskBoard",repeated=False)
 
 class MyUser(ndb.Model):
 	email_address = ndb.StringProperty()
@@ -15,7 +14,11 @@ class MyUser(ndb.Model):
 	age = ndb.IntegerProperty()
 	tb = ndb.KeyProperty(kind="TaskBoard",repeated=True)
 
+
 class TaskBoard(ndb.Model):
 	name = ndb.StringProperty()
 	ProdBy = ndb.StringProperty()
 	Usersin = ndb.KeyProperty(kind="MyUser", repeated=True)
+	create_on = ndb.DateTimeProperty()
+	update_on = ndb.DateTimeProperty()
+	task = ndb.StructuredProperty(Task, repeated=True)

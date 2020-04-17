@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <fieldset>
+    <center><h3>Add Task</h3></center>
+    <form class="" action="/addtask" method="post">
+      <input type="text" name="tkd_key" value="{{tkbd.key.id()}}" hidden/>
+      Task name : <input type="text" name="tk_name" value="{{tkbd.task.name}}"><br/>
+      Assign Task to:
+
+  <select name="assign">
+        {%for nu in tkbd.Usersin%}
+        <option value="{{nu.get().key.id()}}">{{nu.get().name}}</option>
+          {%endfor%}
+      </select>
+
+      <br/>
+      <input type="submit" name="button" value="Add">
+      <input type="submit" name="button" value="Cancel"><br/>
+
+
+
+    </form>
+  </fieldset>
+  {{tk}}
+  <table border="1">
+    <tr>
+      <th>name</th>
+    </tr>
+
+{%for task in tk%}
+<tr>
+  <td>{{task.name}}</td>
+  {%if task.appoint_to != None%}
+  <td style="background:green">{{task.appoint_to.get().name}}</td>
+  {%else%}
+  <td style="background:gray">Not Assign</td>
+  {%endif%}
+</tr>
+{%endfor%}
+</table>
+  <br/>
+  {{tkbd}}
+  </body>
+</html>

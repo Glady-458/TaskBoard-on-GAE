@@ -11,7 +11,7 @@
       Invite users :
       {%for u in usr%}
       {%if u.key.id() != myuser.key.id()%}
-      <input type="checkbox" name="ck" value="{{u.key.id()}}")/>{{u.name}}
+      <input type="checkbox" name="ck" value="{{u.key.id()}}"/>{{u.name}}
       {%endif%}
       {%endfor%}
       <br/>

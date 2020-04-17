@@ -6,20 +6,52 @@
   </head>
   <body>
   <fieldset>
-    <center><h1>Information</h1></center>
-    <form class="" action="/tkbddetail" method="post">
+    <center><h3>Information</h3></center>
       <table>
         <tr><td>owner:</td><td><label >{{tkbd.ProdBy}}</label></td></tr>
-        <tr><td>name</td><td><input type="text" name="tkbd_name" value="{{tkbd.name}}"></td></tr>
+        <tr><td>name</td><td><label>{{tkbd.name}}</label></td></tr>
         <tr><td>members</td><td>
-        {%for i in tkbd.Usersin%}
-        {{i.get().name}}<br/>
-        {%endfor%}
+          {%if tkbd.Usersin%}
+            {%for i in tkbd.Usersin%}
+            {{i.get().name}}<br/>
+            {%endfor%}
+          {%else%}
+          None
+          {%endif%}
         </td></tr>
+        <tr><td>Created on</td><td>{{tkbd.create_on}}</td></tr>
+        <tr><td>Updated on</td><td>{%if tkbd.update_on==None%} None {%else%}{{tkbd.update_on}}{%endif%}</td></tr>
       </table>
-
-    </form><br/><br/>
-    {{tkbd}}
+    <br/><br/>
   </fieldset>
+  {%if myuser.name==tkbd.ProdBy%}
+  <fieldset>
+    <center><h3>Update Information</h3></center>
+    <form class="" action="/tkbddetail" method="post">
+      <input type="text" name="tkd_key" value="{{tkbd.key.id()}}" hidden/>
+      name: <input type="text" name="tkd_name" value="{{tkbd.name}}"><br/>
+      {%if (tkbd.Usersin|length)!=((usr|length)-1)%}
+        add members:
+        {%for nu in adu%}
+        <input type="checkbox" name="ck" value="{{nu.get().key.id()}}"/>{{nu.get().name}}
+        {%endfor%}
+      {%else%}
+        All users are already added
+      {%endif%}
+      <br/>
+      Remove user:
+        {%for user in tkbd.Usersin%}
+        {%set u = user.get()%}
+        <input type="checkbox" name="rck" value="{{u.key.id()}}"/>{{u.name}}
+        {%endfor%}
+      <br/>
+      <input type="submit" name="button" value="Cancel"><br/>
+      <input type="submit" name="button" value="Update">
+
+    </form>
+  </fieldset>
+  {%endif%}
+  click <a href='/addtask?key={{tkbd.key.id()}}'>here</a>to check task
+
   </body>
 </html>

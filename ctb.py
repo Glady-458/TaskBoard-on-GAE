@@ -54,7 +54,9 @@ class CTB(webapp2.RequestHandler):
 			tkbd=tkbd_key.get()
 			tkbd=TaskBoard(name = self.request.get('tk_name'),
 							ProdBy = self.request.get('tk_pro'),
-							Usersin= keys)
+							Usersin = keys,
+							create_on = datetime.now(),
+							update_on = None)
 
 			tkbd.put()
 			myuser.tb.append(tkbd.key)
