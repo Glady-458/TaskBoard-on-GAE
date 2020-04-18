@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <title></title>
   </head>
-  <body bgcolor=red>
+  <body>
     <form action="/ctb" method="POST">
       name : <input type="text"  name="tk_name" required/><br/>
-      producted by : <input type="text" value="{{myuser.name}}" name="tk_pro"/><br/>
+      producted by : <input type="text" value="{{myuser.key.id()}}" name="tk_pro" hidden/>{{myuser.name}}<br/>
       Invite users :
       {%for u in usr%}
       {%if u.key.id() != myuser.key.id()%}
@@ -16,12 +16,8 @@
       {%endfor%}
       <br/>
       <input type="submit" name="button" value="Add">
-
-
       {%for u in q%}
-
       tb : <input type="checkbox" name="ck" value="{{u.id}}"/>{{u.key.id()}}<br/>
-
       {%endfor%}
     </form>
     <form action="/ctb" method="POST">

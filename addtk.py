@@ -49,7 +49,7 @@ class ATask(webapp2.RequestHandler):
                 start=datetime.now(),
                 createed_by=myuser.key,
                 appoint_to=ndb.Key('MyUser',self.request.get('assign')),
-                #end = self.request.get('dl')
+                end = datetime.strptime(self.request.get('dl'),'%Y-%m-%d')
                 ))
                 tkbd.update_on = datetime.now()
                 tkbd.put()

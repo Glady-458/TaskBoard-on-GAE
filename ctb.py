@@ -53,7 +53,7 @@ class CTB(webapp2.RequestHandler):
 			tkbd_key=ndb.Key('TaskBoard',user.user_id())
 			tkbd=tkbd_key.get()
 			tkbd=TaskBoard(name = self.request.get('tk_name'),
-							ProdBy = self.request.get('tk_pro'),
+							ProdBy = ndb.Key('MyUser',self.request.get('tk_pro')),
 							Usersin = keys,
 							create_on = datetime.now(),
 							update_on = None)

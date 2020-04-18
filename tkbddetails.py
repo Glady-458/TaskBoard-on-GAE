@@ -25,13 +25,13 @@ class Detail(webapp2.RequestHandler):
 				for a in tkbd.Usersin:
 						if a.get() in usr:
 							for u in usr:
-								if (tkbd.ProdBy != u.name):
+								if (tkbd.ProdBy.get().name != u.name):
 									if u.key not in tkbd.Usersin:
 										if u.key not in adu:
 											adu.append(u.key)
 			else:
 				for u in usr:
-					if (tkbd.ProdBy != u.name):
+					if (tkbd.ProdBy.get().name != u.name):
 						if u.key not in tkbd.Usersin:
 							if u.key not in adu:
 								adu.append(u.key)
@@ -59,7 +59,7 @@ class Detail(webapp2.RequestHandler):
 		myuser = ndb.Key('MyUser', user.user_id()).get()
 		tkbd = ndb.Key(TaskBoard,int(self.request.get("tkd_key"))).get()
 		if user:
-			if tkbd.ProdBy == myuser.name:
+			if tkbd.ProdBy.get().name == myuser.name:
 				if self.request.get('button')=='Update':
 					tkbd.name=self.request.get('tkd_name')
 					#=----------------------------------------

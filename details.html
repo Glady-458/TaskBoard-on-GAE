@@ -8,7 +8,7 @@
   <fieldset>
     <center><h3>Information</h3></center>
       <table>
-        <tr><td>owner:</td><td><label >{{tkbd.ProdBy}}</label></td></tr>
+        <tr><td>owner:</td><td><label >{{tkbd.ProdBy.get().name}}</label></td></tr>
         <tr><td>name</td><td><label>{{tkbd.name}}</label></td></tr>
         <tr><td>members</td><td>
           {%if tkbd.Usersin%}
@@ -24,10 +24,10 @@
       </table>
     <br/><br/>
   </fieldset>
-  {%if myuser.name==tkbd.ProdBy%}
+  {%if myuser.name==tkbd.ProdBy.get().name%}
   <fieldset>
     <center><h3>Update Information</h3></center>
-    <form class="" action="/tkbddetail" method="post">
+    <form action="/tkbddetail" method="post">
       <input type="text" name="tkd_key" value="{{tkbd.key.id()}}" hidden/>
       name: <input type="text" name="tkd_name" value="{{tkbd.name}}"><br/>
       {%if (tkbd.Usersin|length)!=((usr|length)-1)%}

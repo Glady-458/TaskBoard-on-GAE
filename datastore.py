@@ -7,6 +7,8 @@ class Task(ndb.Model):
 	appoint_to = ndb.KeyProperty(kind="MyUser",repeated=False)
 	start = ndb.DateTimeProperty()
 	end = ndb.DateTimeProperty()
+	complete = ndb.DateTimeProperty()
+	flag = ndb.StringProperty(default="Pending")
 
 class MyUser(ndb.Model):
 	email_address = ndb.StringProperty()
@@ -17,7 +19,7 @@ class MyUser(ndb.Model):
 
 class TaskBoard(ndb.Model):
 	name = ndb.StringProperty()
-	ProdBy = ndb.StringProperty()
+	ProdBy = ndb.KeyProperty(kind="MyUser",repeated=False)
 	Usersin = ndb.KeyProperty(kind="MyUser", repeated=True)
 	create_on = ndb.DateTimeProperty()
 	update_on = ndb.DateTimeProperty()

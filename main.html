@@ -19,7 +19,7 @@
 			<tr><th>name</th><th>Produce By</th><th>User in</th></tr>
 			{%for tkb in keys %}
 			<tr><td><a href='/tkbddetail?key={{tkb.key.id()}}'>{{tkb.name}}</a></td>
-				<td>{{tkb.ProdBy}}</td>
+				<td>{{tkb.ProdBy.get().name}}</td>
 				<td>
 				{%for user in tkb.Usersin %}
 				{{user.get().name}}<br/>
