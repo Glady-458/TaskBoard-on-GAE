@@ -98,10 +98,22 @@ class Detail(webapp2.RequestHandler):
 									if i == tks.appoint_to:
 										tks.flag = 'Un Assign'
 										tks.appoint_to=ndb.Key('MyUser',1)
-
 					#=----------------------------------------
 					tkbd.update_on=datetime.now()
 					tkbd.put()
 					self.redirect('/')
 				elif self.request.get('button')=='Cancel':
 					self.redirect('/')
+				elif self.request.get('button')=='Delete':
+					if  tkbd.task == [] and tkbd.Usersin==[]:
+						myuser.tb.remove(tkbd.key)
+						tkbd.key.delete()
+						myuser.put()
+						self.redirect('/')
+					else:
+							template = JINJA_ENVIRONMENT.get_template("error.html")
+							template_values = {
+			                	"error" : "remove all the users and delete all the task to delete this taskboard" ,
+			                	"url" : "/"
+								}
+							self.response.write(template.render(template_values))

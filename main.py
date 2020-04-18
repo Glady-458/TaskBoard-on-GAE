@@ -46,11 +46,11 @@ class MainPage(webapp2.RequestHandler):
 					tk.append(t.get())
 
 			for i in tk:
-				for j in i.Usersin:
-
-					p=j.get()
-					if p.name == myuser.name:
-						keys.append(i)
+				if i != None:
+					for j in i.Usersin:
+						p=j.get()
+						if p.name == myuser.name:
+							keys.append(i)
 
 		else:
 			url = users.create_login_url(self.request.uri)

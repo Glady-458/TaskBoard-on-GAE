@@ -18,6 +18,7 @@
 		<table border="1">
 			<tr><th>Owner</th><th>name</th><th>Produce By</th><th>User in</th></tr>
 			{%for tkb in keys %}
+			{%if tkb != None%}
 			<tr>
 				<td>{%if myuser.key == tkb.ProdBy%}<center>*</center>{%endif%}</td>
 				<td><a href='/tkbddetail?key={{tkb.key.id()}}'>{{tkb.name}}</a></td>
@@ -28,6 +29,7 @@
 				{%endfor%}
 				</td>
 			</tr>
+			{%endif%}
 
 			{%endfor%}
 		</table>

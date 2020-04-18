@@ -6,7 +6,7 @@
   </head>
   <body>
   <fieldset>
-    <center><h3>Information</h3></center>
+    <center><h3>Taskboard Information</h3></center>
       <table border="1">
         <tr><td>owner:</td><td><label >{{tkbd.ProdBy.get().name}}</label></td></tr>
         <tr><td>name</td><td><label>{{tkbd.name}}</label></td></tr>
@@ -47,7 +47,7 @@
   </fieldset>
   {%if myuser.name==tkbd.ProdBy.get().name%}
   <fieldset>
-    <center><h3>Update Information</h3></center>
+    <center><h3>Update Taskboard Information</h3></center>
     <form action="/tkbddetail" method="post">
       <input type="text" name="tkd_key" value="{{tkbd.key.id()}}" hidden/>
       name: <input type="text" name="tkd_name" value="{{tkbd.name}}"><br/>
@@ -66,8 +66,9 @@
         <input type="checkbox" name="rck" value="{{u.key.id()}}"/>{{u.name}}
         {%endfor%}
       <br/>
-      <input type="submit" name="button" value="Cancel"><br/>
+      <input type="submit" name="button" value="Cancel">
       <input type="submit" name="button" value="Update">
+      <input type="submit" name="button" value="Delete">
 
     </form>
   </fieldset>
