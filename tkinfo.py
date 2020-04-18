@@ -47,12 +47,12 @@ class ETask(webapp2.RequestHandler):
 				if task.name == self.request.get("utk_name"):
 					tk=task
 			if user:
+				if myuser.name in tkbd.Usersin or myuser.key == tkbd.ProdBy:
 					tk.name=self.request.get('tk_name')
 					tk.end= datetime.strptime(self.request.get('dl'),'%Y-%m-%d')
-					tk.appoint_to=self.request.get('appt')
+					tk.appoint_to= ndb.Key('MyUser',self.request.get('appt'))
+					tk.flag='Pending'
 					tkbd.put()
-
-
 					self.redirect('/')
 		elif self.request.get('button')=='Cancel':
 				self.redirect('/')

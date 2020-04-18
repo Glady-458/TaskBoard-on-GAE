@@ -51,7 +51,39 @@
     </form>
   </fieldset>
   {%endif%}
-  click <a href='/addtask?key={{tkbd.key.id()}}'>here</a>to check task
+  <table border="1">
+    <tr>
+      <th>name</th>
+      <th>Assigned to</th>
+      <th>Start Time</th>
+      <th>Deadline</th>
+      <th>Completion time</th>
+      <th>Status</th>
+      <th>Edit / Complete / Delete</th>
+
+    </tr>
+
+{%for task in tkbd.task%}
+{%if task.flag == 'Complete'%}
+<tr style="background:green">
+{%elif task.flag == 'Un Assign'%}
+<tr style="background:red">
+{%endif%}
+  <td>{{task.name}}</td>
+  {%if task.appoint_to.get().name != None%}
+  <td>{{task.appoint_to.get().name}}</td>
+  {%else%}
+  <td style="background:gray">Not Assign</td>
+  {%endif%}
+  <td>{{task.start}}</td>
+  <td>{{task.end}}</td>
+  <td>{{task.complete}}</td>
+  <td>{{task.flag}}</td>
+  <td><a href="/tkinfo?key={{tkbd.key.id()}}&tknm={{task.name}}"><button>Action</button></a></td>
+</tr>
+{%endfor%}
+</table>
+  click <a href='/addtask?key={{tkbd.key.id()}}'>here</a> to add task
 
   </body>
 </html>

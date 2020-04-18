@@ -78,6 +78,11 @@ class Detail(webapp2.RequestHandler):
 						for i in keys:
 							if i in tkbd.Usersin:
 								tkbd.Usersin.remove(i)
+								for tks in tkbd.task:
+									if i == tks.appoint_to:
+										tks.flag = 'Un Assign'
+										tks.appoint_to=ndb.Key('MyUser',1)
+
 					#=----------------------------------------
 					tkbd.update_on=datetime.now()
 					tkbd.put()
