@@ -7,7 +7,7 @@
   <body>
   <fieldset>
     <center><h3>Information</h3></center>
-      <table>
+      <table border="1">
         <tr><td>owner:</td><td><label >{{tkbd.ProdBy.get().name}}</label></td></tr>
         <tr><td>name</td><td><label>{{tkbd.name}}</label></td></tr>
         <tr><td>members</td><td>
@@ -19,6 +19,27 @@
           None
           {%endif%}
         </td></tr>
+        <tr><td>Total Number of Task:</td>
+          <td>{{tkbd.task|length}}</td>
+        </tr>
+        <tr>
+          <td>Active Tasks</td>
+          <td>
+          {{c}}
+          </td>
+        </tr>
+        <tr>
+          <td>Completed Tasks</td>
+          <td>
+          {{c1}}
+          </td>
+        </tr>
+        <tr>
+          <td>Tasks completed today</td>
+          <td>
+          {{c2}}<br/>
+          </td>
+        </tr>
         <tr><td>Created on</td><td>{{tkbd.create_on}}</td></tr>
         <tr><td>Updated on</td><td>{%if tkbd.update_on==None%} None {%else%}{{tkbd.update_on}}{%endif%}</td></tr>
       </table>
@@ -66,7 +87,7 @@
 {%for task in tkbd.task%}
 {%if task.flag == 'Complete'%}
 <tr style="background:green">
-{%elif task.flag == 'Un Assign'%}
+{%elif task.flag == 'Un Assign' or task.flag == 'Re-assigned and Pending'%}
 <tr style="background:red">
 {%endif%}
   <td>{{task.name}}</td>

@@ -51,7 +51,7 @@ class ETask(webapp2.RequestHandler):
 					tk.name=self.request.get('tk_name')
 					tk.end= datetime.strptime(self.request.get('dl'),'%Y-%m-%d')
 					tk.appoint_to= ndb.Key('MyUser',self.request.get('appt'))
-					tk.flag='Pending'
+					tk.flag='Re-assigned and Pending'
 					tkbd.put()
 					self.redirect('/')
 		elif self.request.get('button')=='Cancel':

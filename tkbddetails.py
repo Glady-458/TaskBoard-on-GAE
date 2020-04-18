@@ -35,12 +35,28 @@ class Detail(webapp2.RequestHandler):
 						if u.key not in tkbd.Usersin:
 							if u.key not in adu:
 								adu.append(u.key)
+			c = 0
+			c1 = 0
+			c2 = 0
+
+			for tk in tkbd.task:
+				tkct= str(tk.complete).strip(" ")
+				now = str(datetime.now()).strip(" ")
+				if tk.flag != 'Complete':
+					c=c+1
+				elif tk.flag == 'Complete':
+					c1=c1+1
+				if tkct[0]==now[0]:
+					c2=c2+1
 
 			template_values = {
 				'myuser' : myuser,
 	            'tkbd' : tkbd,
 				'usr' : usr,
 				'adu' : adu,
+				'c' : c,
+				'c1' : c1,
+				'c2' : c2,
 				}
 			template = JINJA_ENVIRONMENT.get_template('details.html')
 		else:

@@ -15,10 +15,12 @@
 		<br/>
 		<br/>
 		{%if keys%}
-		<table>
-			<tr><th>name</th><th>Produce By</th><th>User in</th></tr>
+		<table border="1">
+			<tr><th>Owner</th><th>name</th><th>Produce By</th><th>User in</th></tr>
 			{%for tkb in keys %}
-			<tr><td><a href='/tkbddetail?key={{tkb.key.id()}}'>{{tkb.name}}</a></td>
+			<tr>
+				<td>{%if myuser.key == tkb.ProdBy%}<center>*</center>{%endif%}</td>
+				<td><a href='/tkbddetail?key={{tkb.key.id()}}'>{{tkb.name}}</a></td>
 				<td>{{tkb.ProdBy.get().name}}</td>
 				<td>
 				{%for user in tkb.Usersin %}

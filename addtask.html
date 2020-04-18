@@ -17,7 +17,8 @@
         {%for nu in tkbd.Usersin%}
         <option value="{{nu.get().key.id()}}">{{nu.get().name}}</option>
           {%endfor%}
-      </select>
+      </select><br/>
+      Set Deadline
        <input type="date" name="dl" required/>
 
       <br/>
