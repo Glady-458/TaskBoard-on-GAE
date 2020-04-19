@@ -13,21 +13,19 @@
       Assign Task to:
 
   <select name="assign">
-        <option value="{{tkbd.ProdBy.get().key.id()}}" selected>{{tkbd.ProdBy.get().name}}</option>
         {%for nu in tkbd.Usersin%}
         <option value="{{nu.get().key.id()}}">{{nu.get().name}}</option>
           {%endfor%}
+          <option value="{{tkbd.ProdBy.get().key.id()}}">{{tkbd.ProdBy.get().name}}</option>
       </select><br/>
       Set Deadline
        <input type="date" name="dl" required/>
 
       <br/>
       <input type="submit" name="button" value="Add">
-      <input type="submit" name="button" value="Cancel"><br/>
-
-
-
+      <a href='/tkbddetail?key={{tkbd.key.id()}}'>Back</a>
     </form>
+
   </fieldset>
   <br/>
   </body>

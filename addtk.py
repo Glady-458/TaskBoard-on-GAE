@@ -53,7 +53,4 @@ class ATask(webapp2.RequestHandler):
                 ))
                 tkbd.update_on = datetime.now()
                 tkbd.put()
-
-
-        elif self.request.get('button') == 'Cancel':
-            self.redirect('/ctb')
+	self.redirect('/tkbddetail?key='+str(tkbd.key.id()))

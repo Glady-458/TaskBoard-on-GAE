@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <title></title>
   </head>
-  <body bgcolor = "green">
-    {{tk}}
+  <body>
+    <fieldset>
+      <h1>Edit / Delete / Complete Task </h1>
     <form action="/tkinfo" method="post">
       <input type="text" name="tk_key" value="{{tkbd.key.id()}}" hidden/>
       <input type="text" name="utk_name" value="{{tk.name}}" hidden/>
@@ -18,12 +19,12 @@
             <option value="{{nu.get().key.id()}}">{{nu.get().name}}</option>
               {%endfor%}
           </select><br/>
-      deadline : <input type="date" name="dl" value={{tk.end}}><br/>
+      deadline : <input type="date" name="dl" value={{tk.end}}><br/><br/>
       <input type="submit" name="button" value="Edit"/>
       <input type="submit" name="button" value="Cancel"/>
       <input type="submit" name="button" value="Complete"/>
       <input type="submit" name="button" value="Delete"/>
-
+</fieldset>
 
     </form>
   </body>

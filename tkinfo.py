@@ -53,9 +53,9 @@ class ETask(webapp2.RequestHandler):
 					tk.appoint_to= ndb.Key('MyUser',self.request.get('appt'))
 					tk.flag='Re-assigned and Pending'
 					tkbd.put()
-					self.redirect('/')
+					self.redirect('/tkbddetail?key='+str(tkbd.key.id()))
 		elif self.request.get('button')=='Cancel':
-				self.redirect('/')
+				self.redirect('/tkbddetail?key='+str(tkbd.key.id()))
 		elif self.request.get('button')=='Complete':
 				for task in tkbd.task:
 					if task.name == self.request.get("utk_name"):
@@ -64,7 +64,7 @@ class ETask(webapp2.RequestHandler):
 					tk.flag='Complete'
 					tk.complete=datetime.now()
 					tkbd.put()
-					self.redirect('/')
+					self.redirect('/tkbddetail?key='+str(tkbd.key.id()))
 		elif self.request.get('button')=='Delete':
 			tasks = []
 			for task in tkbd.task:
@@ -73,53 +73,4 @@ class ETask(webapp2.RequestHandler):
 				if user:
 						tkbd.task=tasks
 						tkbd.put()
-				self.redirect('/')
-
-# #! python2
-# import webapp2
-# import jinja2
-# from google.appengine.api import users
-# from google.appengine.ext import ndb
-# import os
-# import time
-# from datastore import *
-# from edit import Edit
-# from datetime import datetime
-# JINJA_ENVIRONMENT = jinja2.Environment(
-# 	loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
-# 	extensions=['jinja2.ext.autoescape'],
-# 	autoescape=True)
-# class ETask(webapp2.RequestHandler):
-#     def get(self):
-#         self.response.headers['Content-Type'] = 'text/html'
-#         tkbd = ndb.Key(TaskBoard,int(self.request.get("key"))).get()
-#         for task in tkbd.task:
-#             if task.name == self.request.get('tknm'):
-#                 tk=task
-#
-#         template_values = {
-#         'tkbd' : tkbd,
-#         'tk' : tk
-#         }
-#         template = JINJA_ENVIRONMENT.get_template("tkinfo.html")
-#         self.response.write(template.render(template_values))
-#     def post(self):
-# 		self.response.headers['Content-Type'] = 'text/html'
-#
-# 		tkbd = ndb.Key(TaskBoard,int(self.request.get("key"))).get()
-# 		if user:
-# 			if self.request.get('button') == 'Edit':
-# 				for task in tkbd.task:
-# 					if task.name == self.request.get('tknm'):
-# 						tk=task
-# 				tk.name=self.request.get('tk_name')
-# 				tk.put()
-# 				self.redirect('/')
-# 		# elif self.request.get('button') == 'Cancel':
-# 		# 	self.redirect('/')
-# 		# elif self.request.get('button') == 'Complete':
-# 		# 	tk="rr"
-# 		# elif self.request.get('button') == 'Delete':
-# 		# 	tf="dsf"
-# 		# else:
-# 		# 	self.redirect('/')
+				self.redirect('/tkbddetail?key='+str(tkbd.key.id()))

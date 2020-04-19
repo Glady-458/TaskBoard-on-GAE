@@ -40,29 +40,27 @@ class CTB(webapp2.RequestHandler):
 		# myuser_key = ndb.Key('MyUser', user.user_id())
 		# myuser = myuser_key.get()
 		#keyno = int(time.time()*1000)+int(user.user_id())-117015319568420173343-8789446238771050223-60000000000001021146
-		if self.request.get('button') == 'Add':
-			myuser_key = ndb.Key('MyUser', user.user_id())
-			myuser = myuser_key.get()
-			#tkbd_key = ndb.Key('TaskBoard', user.user_id())
-			#tkbd=tkbd_key.get()
-			#myuser.tb.append([ndb.Key(TaskBoard,keyno)])
-			ids=self.request.POST.getall('ck')
-			keys=[]
-			for i in ids:
-				keys.append(ndb.Key("MyUser",i))
-			tkbd_key=ndb.Key('TaskBoard',user.user_id())
-			tkbd=tkbd_key.get()
-			tkbd=TaskBoard(name = self.request.get('tk_name'),
-							ProdBy = ndb.Key('MyUser',self.request.get('tk_pro')),
-							Usersin = keys,
-							create_on = datetime.now(),
-							update_on = None)
+		if user:
+			if self.request.get('button') == 'Add':
+				myuser_key = ndb.Key('MyUser', user.user_id())
+				myuser = myuser_key.get()
+				#tkbd_key = ndb.Key('TaskBoard', user.user_id())
+				#tkbd=tkbd_key.get()
+				#myuser.tb.append([ndb.Key(TaskBoard,keyno)])
+				ids=self.request.POST.getall('ck')
+				keys=[]
+				for i in ids:
+					keys.append(ndb.Key("MyUser",i))
+				tkbd_key=ndb.Key('TaskBoard',user.user_id())
+				tkbd=tkbd_key.get()
+				tkbd=TaskBoard(name = self.request.get('tk_name'),
+								ProdBy = ndb.Key('MyUser',self.request.get('tk_pro')),
+								Usersin = keys,
+								create_on = datetime.now(),
+								update_on = None)
 
-			tkbd.put()
-			myuser.tb.append(tkbd.key)
-			myuser.put()
-			self.redirect('/')
-			# myuser.tb.name=append(self.request.get('tk_name'))
-
-		elif self.request.get('button') == 'Cancel':
-			self.redirect('/')
+				tkbd.put()
+				myuser.tb.append(tkbd.key)
+				myuser.put()
+				self.redirect('/')
+				# myuser.tb.name=append(self.request.get('tk_name'))

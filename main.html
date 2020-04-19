@@ -11,12 +11,11 @@
     Email: {{myuser.email_address}}<br/>
 		Name: {{ myuser.name }}<br/>
 		Age: {{ myuser.age }}<br/>
-		id : {{ myuser.key.id()}}
 		<br/>
 		<br/>
 		{%if keys%}
 		<table border="1">
-			<tr><th>Owner</th><th>name</th><th>Produce By</th><th>User in</th></tr>
+			<tr><th>Owner</th><th>name</th><th>Produce By</th><th>User in</th><th>Total Task</th></tr>
 			{%for tkb in keys %}
 			{%if tkb != None%}
 			<tr>
@@ -28,6 +27,9 @@
 				{{user.get().name}}<br/>
 				{%endfor%}
 				</td>
+				<td>
+					{{tkb.task|length}}
+				</td>
 			</tr>
 			{%endif%}
 
@@ -36,12 +38,8 @@
 		{%endif%}
 		<br/>
 		<br/>
-		To create a new Taskboard click <a href="/ctb">here</a>
+		To create a new Task Board click <a href="/ctb">here</a>
 		<br/>
-		<br/>
-		tk
-		<br/>
-	{{tk}}
 
 
 		{% else %}

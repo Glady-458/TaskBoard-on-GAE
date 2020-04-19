@@ -5,6 +5,8 @@
     <title></title>
   </head>
   <body>
+    <fieldset>
+      <h2>Creating a new Task Board</h2>
     <form action="/ctb" method="POST">
       name : <input type="text"  name="tk_name" required/><br/>
       producted by : <input type="text" value="{{myuser.key.id()}}" name="tk_pro" hidden/>{{myuser.name}}<br/>
@@ -19,9 +21,9 @@
       {%for u in q%}
       tb : <input type="checkbox" name="ck" value="{{u.id}}"/>{{u.key.id()}}<br/>
       {%endfor%}
+        <a href='/'>Back</a>
     </form>
-    <form action="/ctb" method="POST">
-    <input type="submit" name="button" value="Cancel"><br/>
-    </form>
+
+  </fieldset>
   </body>
 </html>

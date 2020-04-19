@@ -6,7 +6,7 @@
   </head>
   <body>
   <fieldset>
-    <center><h3>Taskboard Information</h3></center>
+    <center><h3>Task Board Information</h3></center>
       <table border="1">
         <tr><td>owner:</td><td><label >{{tkbd.ProdBy.get().name}}</label></td></tr>
         <tr><td>name</td><td><label>{{tkbd.name}}</label></td></tr>
@@ -42,12 +42,13 @@
         </tr>
         <tr><td>Created on</td><td>{{tkbd.create_on}}</td></tr>
         <tr><td>Updated on</td><td>{%if tkbd.update_on==None%} None {%else%}{{tkbd.update_on}}{%endif%}</td></tr>
-      </table>
+      </table><br/>
+      <a href="/"><button>home</button></a>
     <br/><br/>
   </fieldset>
   {%if myuser.name==tkbd.ProdBy.get().name%}
   <fieldset>
-    <center><h3>Update Taskboard Information</h3></center>
+    <center><h3>Update Task Board Information</h3></center>
     <form action="/tkbddetail" method="post">
       <input type="text" name="tkd_key" value="{{tkbd.key.id()}}" hidden/>
       name: <input type="text" name="tkd_name" value="{{tkbd.name}}"><br/>
@@ -73,9 +74,12 @@
     </form>
   </fieldset>
   {%endif%}
+  <h4>click <a href='/addtask?key={{tkbd.key.id()}}'>here</a> to add task</h4>
+  {%if tkbd.task != []%}
   <table border="1">
     <tr>
-      <th>name</th>
+      <th>Name</th>
+      <th>Created By</th>
       <th>Assigned to</th>
       <th>Start Time</th>
       <th>Deadline</th>
@@ -92,6 +96,7 @@
 <tr style="background:red">
 {%endif%}
   <td>{{task.name}}</td>
+  <td>{{task.createed_by.get().name}}</td>
   {%if task.appoint_to.get().name != None%}
   <td>{{task.appoint_to.get().name}}</td>
   {%else%}
@@ -105,7 +110,7 @@
 </tr>
 {%endfor%}
 </table>
-  click <a href='/addtask?key={{tkbd.key.id()}}'>here</a> to add task
+{%endif%}
 
   </body>
 </html>
